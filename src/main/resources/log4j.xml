@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration>
+
+    <!-- Console Appender -->
+    <appender name="STDOUT-APPENDER" class="org.apache.log4j.ConsoleAppender">
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Default Appender -->
+    <appender name="DEFAULT-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="${catalina.home}/logs/dexcoder/common-default.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Debug Appender -->
+    <appender name="DEBUG-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="${catalina.home}/logs/dexcoder/common-dexcoder-debug.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="debug"/>
+            <param name="LevelMax" value="debug"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+    </appender>
+
+    <!-- info Appender -->
+    <appender name="INFO-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="${catalina.home}/logs/dexcoder/common-dexcoder-info.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="info"/>
+            <param name="LevelMax" value="info"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+    </appender>
+
+    <!-- warn Appender -->
+    <appender name="WARN-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="${catalina.home}/logs/dexcoder/common-dexcoder-warn.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="warn"/>
+            <param name="LevelMax" value="warn"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+    </appender>
+
+    <!-- error Appender -->
+    <appender name="ERROR-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="${catalina.home}/logs/dexcoder/common-dexcoder-error.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="error"/>
+            <param name="LevelMax" value="error"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+    </appender>
+
+    <!-- spring Appender -->
+    <appender name="SPRING-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="${catalina.home}/logs/dexcoder/common-spring.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>
+        </layout>
+    </appender>
+
+    <!--velocity Appender-->
+    <appender name="VELOCITY-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="${catalina.home}/logs/dexcoder/common-velocity.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- dexcoder logger -->
+    <logger name="com.dexcoder" additivity="true">
+        <appender-ref ref="DEBUG-APPENDER"/>
+        <appender-ref ref="INFO-APPENDER"/>
+        <appender-ref ref="WARN-APPENDER"/>
+        <appender-ref ref="ERROR-APPENDER"/>
+    </logger>
+
+    <!--spring logger-->
+    <logger name="org.springframework" additivity="true">
+        <appender-ref ref="SPRING-APPENDER"/>
+    </logger>
+
+    <!--velocity logger-->
+    <logger name="org.apache.velocity" additivity="true">
+        <appender-ref ref="VELOCITY-APPENDER"/>
+    </logger>
+    <logger name="velocity_log" additivity="true">
+        <appender-ref ref="VELOCITY-APPENDER"/>
+    </logger>
+
+    <!-- root logger -->
+    <root>
+        <level value="info"/>
+        <appender-ref ref="DEFAULT-APPENDER"/>
+        <appender-ref ref="STDOUT-APPENDER"/>
+    </root>
+
+</log4j:configuration>
