@@ -2,13 +2,17 @@
 
 Spring整合Quartz基于数据库的分布式定时任务，可动态添加、删除、修改定时任务。
 
-创建quartz数据库
+**不建议在生产环境使用，生产环境强烈建议使用[xxl-job](https://github.com/xuxueli/xxl-job)**
 
-执行src/main/resources/scripts下的建表语句
+操作步骤:
 
-执行src/main/resources/create-schema.sql语句
+1、创建quartz数据库
 
-修改数据库连接信息
+2、执行src/main/resources/scripts下的建表语句
+
+3、执行src/main/resources/create-schema.sql语句
+
+4、修改数据库连接信息
 
 # Screenshots
 
